@@ -1,0 +1,41 @@
+---
+title: "notes on priors"
+author: "Ben Bolker and ??"
+---
+
+## know your parameters
+
+
+
+## Cromwell's rule
+  - > think it possible that you may be mistaken
+- don't set a prior to zero for any parameter value that is theoretically/physically possible
+- more generally, conceptual/computational problems with uniform distributions
+    - discontinuous change in probability across the boundary
+	- if bounds are active, posterior prob will pile up at the edge [@carpenter_computational_2017]
+
+
+## Uninformed/weak is a bad idea
+
+Already well covered elsewhere.
+
+* uninformative is not as uninformative as you think: scales matter
+* for any kind of bounded domain, large variances will make probability pile up near the edge(s) of the domain (inverse-gamma example from above)
+* particular bad examples:
+    * wide priors on a logit scale imply that probability is close to zero or 1 (Simpson?)
+	* wide priors for regression parameters imply that $R^2$ is large (Vehtari?)
+	
+## Variance parameters
+
+Variance parameters are a special category, one which Bayesian researchers have spent a great deal of time and effort on. In the Old Days the suggestion was to use inverse-Gamma (because this is the conjugate prior for a Gaussian variance parameter); people would use a neutral mean (e.g. of 1 assuming the response is sensible scaled) and make the shape parameter very small (e.g. inverse-Gamma(shape=0.0001, rate=0.0001), but this leads to a spike near zero [@gelman_prior_2006]
+
+- Parameter expanded (half-Cauchy / t) [@gelman_data_2006; @hadfield_mcmc_2010]
+- multivariate:
+  - param-exp wishart
+  - LKJ
+- Separable correlations and std devs
+- prior predictive simulations
+- improper vs weak vs regularizing / shrinking / neutral vs non neutral (McCarthy)
+- Reparametrizations (R_0 and r) or aux priors (init conditions)
+- Avoid bad tails (flatness)
+- Power exponential
