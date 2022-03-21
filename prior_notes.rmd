@@ -3,8 +3,23 @@ title: "notes on priors"
 author: "Ben Bolker and ??"
 ---
 
+## Terminology
+
+- uninformative, weak, *improper*
+- informative
+- neutral (e.g. symmetric and centered at zero for fixed effects, or equivalently centered at the population mean)
+- non-neutral (e.g. based on prior studies)
+
+## normal or power-exponential priors
+
+- normal construction: on an appropriate scale (e.g. natural, log, or logit), determine the lower/upper bounds of a 'reasonable' range and the tail probability, i.e. the overall probability of lying *outside* the reasonable range (e.g. 5%, 1%, 0.1% ...). This then determines the mean (halfway between the bounds) and standard deviation of a Gaussian prior.
+- power-exponential construction: as above, but further defining the fraction of the power in the middle 50% of the central region determines the shape parameter of a power-exponential
+
 ## know your parameters
 
+In order to set sensible informative (but neutral) priors, you need to know the meaning of your priors.  It is often easiest
+
+### Example:
 
 
 ## Cromwell's rule
@@ -38,4 +53,4 @@ Variance parameters are a special category, one which Bayesian researchers have 
 - improper vs weak vs regularizing / shrinking / neutral vs non neutral (McCarthy)
 - Reparametrizations (R_0 and r) or aux priors (init conditions)
 - Avoid bad tails (flatness)
-- Power exponential
+
