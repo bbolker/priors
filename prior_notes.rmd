@@ -1,12 +1,14 @@
 ---
 title: "notes on priors"
-author: "Ben Bolker and ??"
+author: "Ben Bolker, Jen Freeman and ??"
 ---
 
 ## Terminology
 
-- uninformative, weak, *improper*
-- informative
+- uninformative, weak, vague, flat, diffuse, *improper*
+  - in a general sense, the data provides more information than the prior
+  - *improper*- integral of prior distribution is infinite
+- informative: contains sufficient subject matter knowledge which introduces constraints. Has the computational benefit of a smaller parameter space to explore [@wesner_choosing_2021].
 - neutral (e.g. symmetric and centered at zero for fixed effects, or equivalently centered at the population mean)
 - non-neutral (e.g. based on prior studies)
 
@@ -18,6 +20,10 @@ author: "Ben Bolker and ??"
 ## know your parameters
 
 In order to set sensible informative (but neutral) priors, you need to know the meaning of your priors.  It is often easiest
+
+The amount of information to include in the prior depends on the parameter type [@gelman_bayesian_2020]. Central quantity parameters permit weaker priors than scale parameters, followed by shape parameters [@gelman_bayesian_2020].
+
+
 
 ### Example:
 
@@ -44,6 +50,11 @@ Already well covered elsewhere.
 
 Variance parameters are a special category, one which Bayesian researchers have spent a great deal of time and effort on. In the Old Days the suggestion was to use inverse-Gamma (because this is the conjugate prior for a Gaussian variance parameter); people would use a neutral mean (e.g. of 1 assuming the response is sensible scaled) and make the shape parameter very small (e.g. inverse-Gamma(shape=0.0001, rate=0.0001), but this leads to a spike near zero [@gelman_prior_2006]
 
+
+## Prior predictive simulations
+
+The goal is to choose appropriate priors after performing checks on whether they produce reasonable outcomes without using observed data. The method is to repeatedly simulate data from your model by drawing parameters from your proposed prior distributions. An expert in the subject matter would assess whether the simulated data could pass as real data, and if not then the priors need to be changed. There are obvious benefits to graphing the simulated data when assessing the priors [@wesner_choosing_2021].
+
 - Parameter expanded (half-Cauchy / t) [@gelman_data_2006; @hadfield_mcmc_2010]
 - multivariate:
   - param-exp wishart
@@ -53,4 +64,6 @@ Variance parameters are a special category, one which Bayesian researchers have 
 - improper vs weak vs regularizing / shrinking / neutral vs non neutral (McCarthy)
 - Reparametrizations (R_0 and r) or aux priors (init conditions)
 - Avoid bad tails (flatness)
+- advantage of joint priors over individual on large numbers of parameters [@gelman_bayesian_2020]
+- strategies for choosing prior (matching centre, matching interval, "visualizing probability mass allocation") [@sarma_prior_2020]
 
