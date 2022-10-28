@@ -67,3 +67,10 @@ The goal is to choose appropriate priors after performing checks on whether they
 - advantage of joint priors over individual on large numbers of parameters [@gelman_bayesian_2020]
 - strategies for choosing prior (matching centre, matching interval, "visualizing probability mass allocation") [@sarma_prior_2020]
 
+## Gaussian/power-exponential ranges
+
+From [here](https://github.com/bbolker/bbmisc/blob/master/Rmisc/powexp_prior.R):
+
+```{r}
+source("powexp_prior.R")
+```
