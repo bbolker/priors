@@ -74,3 +74,5 @@ From [here](https://github.com/bbolker/bbmisc/blob/master/Rmisc/powexp_prior.R):
 ```{r}
 source("powexp_prior.R")
 ```
+
+See https://betanalpha.github.io/assets/case_studies/prior_modeling.html#3_One-Dimensional_Expertise
